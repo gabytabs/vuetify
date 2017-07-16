@@ -1,4 +1,4 @@
-# vuetify
+# compo-vue
 
 > A Vue.js project
 
