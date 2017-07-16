@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Home from './Home.vue';
 
-Vue.component('message-from-heaven', Home)
+Vue.component('home-app', Home)
 
 new Vue({
   el: '#app',

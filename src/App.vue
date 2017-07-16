@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>{{ msg }}</h1>
-        <message-from-heaven></message-from-heaven>
+        <home-app></home-app>
     </div>
 </template>
 

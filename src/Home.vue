@@ -1,23 +1,14 @@
 <template>
     <div>
-        <p>
-            The message from heaven: {{ msgs }}
-        </p>
-        <button @click="changeMessage">Change the Message</button>
+        <app-server-status v-for="msgs in 5"></app-server-status>
     </div>
 </template>
 
 <script>
+    import ServerStatus from './ServerStatus.vue'
     export default {
-        data: function() {
-            return {
-                msgs: "Hello from Home Component!"
-            }
-        },
-        methods: {
-            changeMessage () {
-                this.msgs = 'Too much yoloswag for me dawg!';
-            }
+        components: {
+            'app-server-status': ServerStatus
         }
     }
 </script>
