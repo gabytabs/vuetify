@@ -1,5 +1,8 @@
 <template>
-    <h1>{{ msg }}</h1>
+    <div>
+        <h1>{{ msg }}</h1>
+        <message-from-heaven></message-from-heaven>
+    </div>
 </template>
 
 <script>
