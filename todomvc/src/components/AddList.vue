@@ -17,7 +17,8 @@
             onSubmit: function (event) {
                 let list = {
                     todo: this.todo,
-                    isDone: false
+                    isDone: false,
+                    show: true
                 };
                 this.$emit('addList', list);
             }
