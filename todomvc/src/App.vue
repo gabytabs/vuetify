@@ -9,13 +9,19 @@
         <List v-for="(list, index) in addedList"
               :list="list"
               :key="index"
-              v-if="list.isDone === false"
+              v-if="list.show === true"
               @remove="addedList.splice(index, 1)"
               @todoIsDone="markTodoDone">
         </List>
       </section>
 
-      <FilterLists></FilterLists>
+      <section class="filter-list">
+        <FilterLists
+                @showAll="showAll"
+                @showDone="showDone"
+                @showUndone="showUndone">
+        </FilterLists>
+      </section>
     </div>
   </div>
 </template>
@@ -52,6 +58,29 @@
             } else {
                 doneList['isDone'] = false;
             }
+        },
+        showAll() {
+          this.addedList.map( list => {
+              list['show'] = true;
+          })
+        },
+        showDone() {
+            this.addedList.map( list => {
+                if(list.isDone === true) {
+                    list['show'] = true;
+                } else {
+                    list['show'] = false;
+                }
+            })
+        },
+        showUndone() {
+            this.addedList.map( list => {
+                if(list.isDone === false) {
+                    list['show'] = true;
+                } else {
+                    list['show'] = false;
+                }
+            })
         }
     }
   }
@@ -64,6 +93,9 @@
   }
   section.lists{
     padding-top: 40px;
+  }
+  section.filter-list{
+    padding-top: 20px;
   }
 
 </style>
