@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div>
-
+    <div class="columns is-multiline metrics-section-padding">
+        <div v-for="metric in searchedMetrics" class="column is-one-third">
+            <Metric :metric="metric"> </Metric>
         </div>
     </div>
 </template>
@@ -16,22 +16,15 @@ import Metric from './Metric.vue';
           Metric
         },
 
-        data() {
-            return {
-                show: false,
-                setShow: searchedMetrics
-            }
-        },
-
-        watch: {
-            setShow: function() {
-                this.show = true;
-            }
-        },
-
         computed: {
-            ...mapGetters(['searchedMetrics', 'metrics'])
+            ...mapGetters(['searchedMetrics'])
         }
 
     }
 </script>
+
+<style>
+    .metrics-section-padding{
+        padding-top: 25px;
+    }
+</style>

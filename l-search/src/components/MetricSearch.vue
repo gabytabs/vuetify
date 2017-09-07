@@ -1,12 +1,20 @@
 <template>
     <div>
-        <input v-model.trim="searchMetric"
-               @keyup.enter.prevent="searchingForThis(metricFilter)" />
+        <div class="field input-container">
+            <div class="subtitle has-text-centered"> What are you looking for? </div>
+            <div class="control">
+                <input v-model.trim="searchMetric"
+                       class="input has-text-centered is-medium"
+                       placeholder="Ex. CTR"
+                       @keyup.enter.prevent="searchingForThis(metricFilter)" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
+import { EventBus } from '../main';
 
     export default {
 
@@ -14,6 +22,12 @@ import { mapActions } from 'vuex';
             return{
                 searchMetric: ''
             }
+        },
+
+        mounted(){
+            EventBus.$on('resetInput',() => {
+                this.searchMetric = '';
+            } );
         },
 
         computed: {
@@ -28,5 +42,10 @@ import { mapActions } from 'vuex';
             })
         }
     }
-
 </script>
+
+<style lang="scss">
+    .input-container{
+        padding-top: 25px;
+    }
+</style>

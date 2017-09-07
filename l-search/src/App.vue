@@ -1,7 +1,15 @@
 <template>
   <div id="app">
-    <MetricSearch></MetricSearch>
-    <Metrics></Metrics>
+    <div class="container is-fluid">
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <MetricSearch></MetricSearch>
+        </div>
+        <div class="column">
+          <Metrics></Metrics>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
