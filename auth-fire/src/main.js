@@ -3,12 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import { store } from './store/index'
+import VueBlu from 'vue-blu'
+import 'vue-blu/dist/css/vue-blu.min.css'
+
+Vue.use(VueBlu)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }
