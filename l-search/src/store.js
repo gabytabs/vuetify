@@ -25,6 +25,9 @@ export const store = new Vuex.Store({
                .then( response => {
                    state.metrics = response.data.metrics;
                    state.searchedMetrics = response.data.metrics;
+               })
+               .catch(function (error) {
+                   state.searchedMetrics = false;
                });
        },
        search(state, payload){
@@ -42,13 +45,22 @@ export const store = new Vuex.Store({
                    case metric.industry.toLowerCase():
                        searchMetric.push(metric);
                        break;
-                   case `${metric.metricName} ${metric.platform}`.toLowerCase() || `${metric.platform} ${metric.metricName}`.toLowerCase():
+                   case `${metric.metricName} ${metric.platform}`.toLowerCase():
                        searchMetric.push(metric);
                        break;
-                   case `${metric.metricName} ${metric.industry}`.toLowerCase() || `${metric.industry} ${metric.metricName}`.toLowerCase():
+                   case `${metric.platform} ${metric.metricName}`.toLowerCase():
                        searchMetric.push(metric);
                        break;
-                   case `${metric.platform} ${metric.industry}`.toLowerCase() || `${metric.industry} ${metric.platform}`.toLowerCase():
+                   case `${metric.metricName} ${metric.industry}`.toLowerCase():
+                       searchMetric.push(metric);
+                       break;
+                   case `${metric.industry} ${metric.metricName}`.toLowerCase():
+                       searchMetric.push(metric);
+                       break;
+                   case `${metric.platform} ${metric.industry}`.toLowerCase():
+                       searchMetric.push(metric);
+                       break;
+                   case `${metric.industry} ${metric.platform}`.toLowerCase():
                        searchMetric.push(metric);
                        break;
                }
@@ -56,6 +68,19 @@ export const store = new Vuex.Store({
            state.searchedMetrics = searchMetric;
            EventBus.$emit('resetInput');
        },
+       resetMetrics: function (state) {
+           state.searchedMetrics = state.metrics;
+       },
+       sortByRecency: function (state) {
+           state.searchedMetrics = _.sortBy(state.searchedMetrics, function (metric) {
+               return metric.sourceDateFrom;
+           }).reverse();
+       },
+       sortByOldness: function (state) {
+           state.searchedMetrics = _.sortBy(state.searchedMetrics, function (metric) {
+               return metric.sourceDateFrom;
+           });
+       }
    },
 
     actions: {
@@ -64,6 +89,15 @@ export const store = new Vuex.Store({
        },
        searchingMetric(context, payload){
            context.commit('search', payload);
+       },
+       displayAllMetrics(context) {
+           context.commit('resetMetrics');
+       },
+       sortByRecency(context) {
+           context.commit('sortByRecency');
+       },
+       sortByOldness(context) {
+           context.commit('sortByOldness');
        }
     }
 
