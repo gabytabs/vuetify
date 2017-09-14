@@ -52,13 +52,27 @@ export const store = new Vuex.Store({
                 context.commit('loginUser', response.data.jwt);
             })
         },
-        addEpisode: function (context, payload) {
+        addManga: function (context, payload) {
             let manga = {
+                "title": payload.title,
+                "level": payload.level
+            };
+
+            axios.post(`http://localhost:3000/api/v1/manga_titles`, manga, {
+                headers: { Authorization: payload.token }
+            }).then( response => {
+                console.log(response);
+            }).catch(e => {
+                console.log(e);
+            })
+        },
+        addEpisode: function (context, payload) {
+            let mangaEpisode = {
                 "url": payload.url,
                 "episode": payload.episode
             };
 
-            axios.post(`http://localhost:3000/api/v1/manga_titles/${payload.mangaTitleId}/mangas`, manga, {
+            axios.post(`http://localhost:3000/api/v1/manga_titles/${payload.mangaTitleId}/mangas`, mangaEpisode, {
                headers: { Authorization: payload.token}
             }).then(response => {
                 console.log(response);

@@ -6,13 +6,19 @@
                 {{mangas.title}}
             </router-link>
         </div>
+        <AddManga></AddManga>
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+    import AddManga from './AddManga.vue'
 
     export default {
+
+        components: {
+            AddManga
+        },
 
         mounted(){
             axios.get(`http://localhost:3000/api/v1/manga_titles`).then(response => {

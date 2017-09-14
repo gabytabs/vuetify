@@ -1,10 +1,9 @@
 <template>
     <div>
         <input v-model="title"/>
-        <input v-model="url"/>
-        <input v-model="episode"/>
+        <input v-model="level"/>
         <input type="submit"
-               @click="addMangaEpisode({ title, url, episode, token: userToken})"/>
+               @click="addManga({ title, level, token: userToken})"/>
     </div>
 </template>
 
@@ -15,8 +14,7 @@
         data() {
             return {
                 title: '',
-                url: '',
-                episode: ''
+                level: ''
             }
         },
 
@@ -26,7 +24,7 @@
 
         methods: {
             ...mapActions({
-                addMangaEpisode: 'addMangaEpisode'
+                addManga: 'addManga'
             })
         }
 
