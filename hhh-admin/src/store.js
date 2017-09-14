@@ -1,22 +1,69 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios'
+import { EventBus } from './main';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-   state: {
+    state: {
+        userToken: ""
+    },
 
-   },
+    getters: {
+       userToken: state => state.userToken
+    },
 
-   getters: {
+    mutations: {
+       loginUser: function (state, payload) {
+           state.userToken = payload;
+       }
+    },
 
-   },
+    actions: {
+        createUser: function (context, payload) {
+            axios.post(`http://localhost:3000/api/v1/users`,
+                {
+                    "user": {
+                        "email": payload.email,
+                        "password": payload.password,
+                        "password_conformation": payload.passwordConf
+                    }
+                })
+                .then( () => {
+                   axios.post(`http://localhost:3000/user_token`, {
+                      "auth": {
+                         "email": payload.email,
+                         "password": payload.password
+                      }
+                   })
+                   .then( response => {
+                       context.commit('loginUser', response.data.jwt)
+                   })
+                })
+        },
+        loginUser: function (context, payload) {
+            axios.post(`http://localhost:3000/user_token`, {
+                "auth": {
+                    "email": payload.email,
+                    "password": payload.password
+                }
+            }).then( response => {
+                context.commit('loginUser', response.data.jwt);
+            })
+        },
+        addMangaEpisode: function (context, payload) {
+            let manga = {
+               "title": payload.title,
+                "url": payload.url,
+                "episode": payload.episode
+            };
 
-   mutations: {
-
-   },
-
-   actions: {
-
-   }
-});
+            axios.post(`http://localhost:3000/api/v1/mangas`, manga, {
+               headers: { Authorization: payload.token}
+            }).then(response => {
+              console.log(response)
+            }).catch(e => { console.log(e)})
+        }
+    }
+})
