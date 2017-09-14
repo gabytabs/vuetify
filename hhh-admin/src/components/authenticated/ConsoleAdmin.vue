@@ -1,18 +1,13 @@
 <template>
     <div>
-        <AddManga> </AddManga>
+        <router-view> </router-view>
     </div>
 </template>
 
 <script>
-    import AddManga from './AddManga.vue'
     import { mapGetters } from 'vuex'
 
     export default {
-        components: {
-            AddManga
-        },
-
         computed: {
             ...mapGetters(['userToken'])
         }

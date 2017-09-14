@@ -36,7 +36,7 @@
 
         watch: {
             userToken: function () {
-                this.$router.push({ name: 'auth' });
+                this.$router.push('/auth');
             }
         },
 }
