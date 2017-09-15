@@ -3,7 +3,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">
-                    Hey YoloSwag!
+                    Hey!
                 </h1>
                 <h2 class="subtitle">
                     Uploading more `ecchi-ness`, I see..
