@@ -56,7 +56,7 @@
         },
 
         mounted(){
-            axios.get(`http://localhost:3000/api/v1/manga_titles`).then(response => {
+            axios.get(`https://hhh-api.herokuapp.com/api/v1/manga_titles`).then(response => {
                 console.log(response);
                 this.mangasData = response.data
             })

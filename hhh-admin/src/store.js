@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
 
     actions: {
         createUser: function (context, payload) {
-            axios.post(`http://localhost:3000/api/v1/users`,
+            axios.post(`https://hhh-api.herokuapp.com/api/v1/users`,
                 {
                     "user": {
                         "email": payload.email,
@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
                     }
                 })
                 .then( () => {
-                   axios.post(`http://localhost:3000/user_token`, {
+                   axios.post(`https://hhh-api.herokuapp.com/user_token`, {
                       "auth": {
                          "email": payload.email,
                          "password": payload.password
@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
                 })
         },
         loginUser: function (context, payload) {
-            axios.post(`http://localhost:3000/user_token`, {
+            axios.post(`https://hhh-api.herokuapp.com/user_token`, {
                 "auth": {
                     "email": payload.email,
                     "password": payload.password
@@ -58,7 +58,7 @@ export const store = new Vuex.Store({
                 "level": payload.level
             };
 
-            axios.post(`http://localhost:3000/api/v1/manga_titles`, manga, {
+            axios.post(`https://hhh-api.herokuapp.com/api/v1/manga_titles`, manga, {
                 headers: { Authorization: payload.token }
             }).then( response => {
                 console.log(response);
@@ -72,7 +72,7 @@ export const store = new Vuex.Store({
                 "episode": payload.episode
             };
 
-            axios.post(`http://localhost:3000/api/v1/manga_titles/${payload.mangaTitleId}/mangas`, mangaEpisode, {
+            axios.post(`https://hhh-api.herokuapp.com/api/v1/manga_titles/${payload.mangaTitleId}/mangas`, mangaEpisode, {
                headers: { Authorization: payload.token}
             }).then(response => {
                 console.log(response);

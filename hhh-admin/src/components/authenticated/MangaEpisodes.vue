@@ -66,7 +66,7 @@
 
         methods: {
             getMangaEpisodes: function () {
-                axios.get(`http://localhost:3000/api/v1/manga_titles/${this.$route.params.id}/mangas`)
+                axios.get(`https://hhh-api.herokuapp.com/api/v1/manga_titles/${this.$route.params.id}/mangas`)
                     .then( response => {
                         this.mangaEpisodes = response.data;
                     }).catch( e => {
