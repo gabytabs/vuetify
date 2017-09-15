@@ -1,9 +1,22 @@
 <template>
-    <div>
-        <input v-model="myEmail"/>
+    <div class="field is-grouped">
+        <div class="control">
+        <input class="input"
+               type="text"
+               placeholder="Your Email"
+               v-model="myEmail"/>
+        </div>
+        <div class="control">
         <input type="password"
+               class="input"
+               placeholder="Your Password"
                v-model="myPassword"/>
-        <input type="submit" @click.prevent="login({email: myEmail, password: myPassword})" />
+        </div>
+        <div class="control">
+        <input type="submit"
+               class="button is-light is-warning"
+               @click.prevent="login({email: myEmail, password: myPassword})" />
+        </div>
     </div>
 </template>
 

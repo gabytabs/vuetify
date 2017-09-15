@@ -1,14 +1,45 @@
 <template>
-    <div>
-        <form>
-            <input v-model="pushEmail" />
-            <input v-model="pushPassword" />
-            <input v-model="pushPasswordConf"/>
-            <input type="button"
-                   value="Submit"
-                   @click.prevent="createUser({ email: pushEmail, password: pushPassword, passwordConf: pushPasswordConf })"/>
-        </form>
-    </div>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Register!
+                </h1>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input class="input"
+                               type="text"
+                               placeholder="Your Email"
+                                v-model="pushEmail" />
+                    </div>
+                    <div class="control">
+                        <input  type="password"
+                                class="input"
+                                placeholder="Your Password"
+                                v-model="pushPassword" />
+                    </div>
+                    <div class="control">
+                        <input  type="password"
+                                class="input"
+                                placeholder="Confirm Password"
+                                v-model="pushPasswordConf"/>
+                    </div>
+                    <div class="control">
+                        <input type="submit"
+                            class="button is-light is-warning"
+                            @click.prevent="createUser({ email: pushEmail, password: pushPassword, passwordConf: pushPasswordConf })"/>
+                    </div>
+                    <div class="control">
+                        <router-link tag="input"
+                                     type="button"
+                                     value="Log In Instead.."
+                                     class="button is-light is-info"
+                                     to="/"> </router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>

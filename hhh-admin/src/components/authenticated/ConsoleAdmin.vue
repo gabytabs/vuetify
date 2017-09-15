@@ -1,15 +1,3 @@
 <template>
-    <div>
-        <router-view> </router-view>
-    </div>
+    <router-view> </router-view>
 </template>
-
-<script>
-    import { mapGetters } from 'vuex'
-
-    export default {
-        computed: {
-            ...mapGetters(['userToken'])
-        }
-    }
-</script>
