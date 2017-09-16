@@ -14,7 +14,7 @@
             return {
 
             }
-        }
+        },
 
         methods: {
             pushToHome: function () {
