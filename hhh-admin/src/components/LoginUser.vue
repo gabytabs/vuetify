@@ -17,6 +17,13 @@
                class="button is-light is-warning"
                @click.prevent="login({email: myEmail, password: myPassword})" />
         </div>
+        <div class="control">
+            <router-link tag="button"
+                         class="button is-light is-warning"
+                         to="/yoloswagmaster420blazeit">
+                Register..
+            </router-link>
+        </div>
     </div>
 </template>
 

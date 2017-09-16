@@ -41,12 +41,16 @@ export const store = new Vuex.Store({
     }),
     logIn: function (context, payload) {
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-        .then(response => {
-          console.log(response)
-        })
         .catch(error => {
-          console.log(error)
+          console.log(error.message)
         })
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log(user)
+        } else {
+          console.log('the user is not logged in')
+        }
+      })
     }
   }
 })
