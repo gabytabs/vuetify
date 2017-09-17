@@ -4,12 +4,15 @@
         <h1 class="title has-text-centered"> Mangas </h1>
 
         <div class="columns is-multiline">
-            <div class="column is-one-third" v-for="mangas in mangasData">
+            <div class="column is-one-third" v-for="mangas in mangas">
                 <div class="card">
                     <div class="card-content">
-                        <p class="title has-text-centered">
+                        <router-link
+                                tag="p"
+                                class="title has-text-centered clickable"
+                                :to="{ name: 'manga-episode', params: { title: mangas.title, id: mangas.id} }">
                             {{mangas.title}}
-                        </p>
+                        </router-link>
                     </div>
                     <footer class="card-footer">
                         <p class="card-footer-item">
@@ -18,11 +21,7 @@
                       </span>
                         </p>
                         <p class="card-footer-item">
-                          <router-link tag="span"
-                                       class="clickable"
-                                       :to="{ name: 'manga-episode', params: { title: mangas.title, id: mangas.id} }">
-                              Go to Manga
-                          </router-link>
+                          <span>Genre: {{mangas.genre}} </span>
                         </p>
                     </footer>
                 </div>
@@ -47,6 +46,9 @@
 
 <script>
     import axios from 'axios'
+    import { mapActions, mapGetters } from 'vuex'
+
+    // Components
     import AddManga from './AddManga.vue'
 
     export default {
@@ -55,21 +57,30 @@
             AddManga
         },
 
-        mounted(){
-            axios.get(`https://hhh-api.herokuapp.com/api/v1/manga_titles`).then(response => {
-                console.log(response);
-                this.mangasData = response.data
-            })
-        },
-
         data(){
             return{
-                mangasData: {},
                 isActive: false
             }
         },
 
+        computed: {
+            ...mapGetters(['mangas'])
+        },
+
+        watch: {
+            mangas: function () {
+                this.deactivateModal();
+            }
+        },
+
+        mounted(){
+            this.retrieveMangaData();
+        },
+
         methods: {
+            ...mapActions({
+               retrieveMangaData: 'getManga'
+            }),
             activateModal: function () {
                 this.isActive = true;
             },
@@ -90,7 +101,7 @@
         color: hsl(217, 71%, 53%);
     }
 
-    span.clickable {
+    .clickable {
         &:hover {
             color: hsl(217, 71%, 53%);
             cursor: pointer;

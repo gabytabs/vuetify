@@ -19,9 +19,16 @@
                            placeholder="3"
                            v-model="level"/>
                 </div>
+                <label class="label">Genre</label>
+                <div class="control">
+                    <input class="input"
+                           type="text"
+                           placeholder="Yaoi"
+                           v-model="genre"/>
+                </div>
             <input type="submit"
                    class="button is-light is-warning add-manga-button is-pulled-right"
-                   @click="addManga({ title, level, token: userToken})"/>
+                   @click="addManga({ title, level, genre, token: userToken})"/>
             </div>
         </section>
     </div>
@@ -34,7 +41,8 @@
         data() {
             return {
                 title: '',
-                level: ''
+                level: '',
+                genre: ''
             }
         },
 
@@ -45,7 +53,12 @@
         methods: {
             ...mapActions({
                 addManga: 'addManga'
-            })
+            }),
+            reset: function () {
+                this.title = '',
+                this.level = '',
+                this.genre = ''
+            }
         }
 
     }

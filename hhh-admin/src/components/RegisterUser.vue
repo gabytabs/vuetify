@@ -56,8 +56,8 @@
         },
 
         methods: {
-            ...mapActions('user', {
-                userAuth: 'createUser'
+            ...mapActions({
+                createUser: 'createUser'
             })
         },
 

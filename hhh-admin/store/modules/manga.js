@@ -6,17 +6,40 @@ Vue.use(Vuex);
 
 export const manga = {
 
+    state: {
+        mangas: []
+    },
+
+    getters: {
+        mangas: state => state.mangas
+    },
+
+    mutations: {
+        mangaAdded: function (state, payload) {
+            state.mangas.push(payload)
+        },
+        getManga: function (state, payload) {
+            state.mangas = payload
+        }
+    },
+
     actions: {
+        getManga: function (context, payload) {
+            axios.get(`https://hhh-api.herokuapp.com/api/v1/manga_titles`).then(response => {
+                context.commit('getManga', response.data)
+            })
+        },
         addManga: function (context, payload) {
             let manga = {
                 "title": payload.title,
-                "level": payload.level
+                "level": payload.level,
+                "genre": payload.genre
             };
 
             axios.post(`https://hhh-api.herokuapp.com/api/v1/manga_titles`, manga, {
                 headers: { Authorization: payload.token }
             }).then( response => {
-                console.log(response);
+                context.commit('mangaAdded', response.data);
             }).catch(e => {
                 console.log(e);
             })

@@ -10,9 +10,9 @@
             ...mapGetters(['userToken'])
         },
 
-        data() {
-            return {
-
+        mounted() {
+            if(this.userToken === "") {
+                this.pushToHome();
             }
         },
 
