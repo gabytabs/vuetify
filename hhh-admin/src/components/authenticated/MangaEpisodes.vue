@@ -30,12 +30,12 @@
                 <button @click="deactivateModal" class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
-
     </section>
 </template>
 
 <script>
     import axios from 'axios'
+    import { mapGetters, mapActions } from 'vuex'
     import AddEpisode from './AddEpisode.vue'
     import MangaContent from './MangaContent.vue'
 
@@ -47,12 +47,12 @@
 
         data(){
             return {
-                mangaEpisodes: {},
                 isActive: false
             }
         },
 
         computed: {
+            ...mapGetters(['mangaEpisodes']),
             numberOfChapters: function () {
                 let number = [];
                 this.mangaEpisodes.map( episode => {
@@ -64,25 +64,26 @@
             }
         },
 
+        mounted(){
+            this.getMangaEpisodes(this.$route.params.id)
+        },
+
+        watch: {
+            mangaEpisodes: function () {
+                this.deactivateModal();
+            }
+        },
+
         methods: {
-            getMangaEpisodes: function () {
-                axios.get(`https://hhh-api.herokuapp.com/api/v1/manga_titles/${this.$route.params.id}/mangas`)
-                    .then( response => {
-                        this.mangaEpisodes = response.data;
-                    }).catch( e => {
-                    console.log(e);
-                })
-            },
+            ...mapActions({
+                getMangaEpisodes: 'getMangaEpisodes'
+            }),
             activateModal: function () {
                 this.isActive = true;
             },
             deactivateModal: function () {
                 this.isActive = false;
             }
-        },
-
-        mounted(){
-            this.getMangaEpisodes();
         }
 
     }

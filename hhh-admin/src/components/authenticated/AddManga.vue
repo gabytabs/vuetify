@@ -1,4 +1,4 @@
-<template>
+<template>
     <div class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">Add A Manga</p>
@@ -12,12 +12,12 @@
                            placeholder="Naruto"
                            v-model="title"/>
                 </div>
-                <label class="label">Level Of Maturity</label>
+                <label class="label">Type of Content</label>
                 <div class="control">
                     <input class="input"
                            type="text"
-                           placeholder="3"
-                           v-model="level"/>
+                           placeholder="Doujinshi"
+                           v-model="type"/>
                 </div>
                 <label class="label">Genre</label>
                 <div class="control">
@@ -28,7 +28,7 @@
                 </div>
             <input type="submit"
                    class="button is-light is-warning add-manga-button is-pulled-right"
-                   @click="addManga({ title, level, genre, token: userToken})"/>
+                   @click="addManga({ title, type, genre, token: userToken})"/>
             </div>
         </section>
     </div>
@@ -41,7 +41,7 @@
         data() {
             return {
                 title: '',
-                level: '',
+                type: '',
                 genre: ''
             }
         },
@@ -56,11 +56,10 @@
             }),
             reset: function () {
                 this.title = '',
-                this.level = '',
+                this.type = '',
                 this.genre = ''
             }
         }
-
     }
 </script>
 

@@ -17,7 +17,7 @@
                     <footer class="card-footer">
                         <p class="card-footer-item">
                       <span>
-                          Power Level: <span class="level-color"> {{mangas.level}} </span>
+                          <span class="level-color"> {{mangas.manga_type}} </span>
                       </span>
                         </p>
                         <p class="card-footer-item">
@@ -40,7 +40,6 @@
                 <button @click="deactivateModal" class="modal-close is-large" aria-label="close"></button>
             </div>
         </div>
-
     </div>
 </template>
 
