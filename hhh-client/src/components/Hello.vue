@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'hello',
   data () {
     return {
 
@@ -15,7 +14,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
 </style>
