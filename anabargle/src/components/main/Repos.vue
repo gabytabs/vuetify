@@ -68,6 +68,7 @@
           repoName: this.repoName
         })
         this.showForm = false
+        this.repoName = ''
       }
     }
   }
