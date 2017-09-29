@@ -1,7 +1,18 @@
 <template>
   <div class="toolbar-container">
     <v-navigation-drawer v-model="drawer" temporary>
-        <!-- Navdrawer to be thought about -->
+      <v-list class="pa-1">
+        <v-list-tile avatar>
+          <!--<v-list-tile-avatar>-->
+          <!--<img src="https://randomuser.me/api/portraits/men/85.jpg" />-->
+          <!--</v-list-tile-avatar>-->
+          <v-list-tile-content>
+            <v-list-tile-title>User's Name</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+      <v-divider></v-divider>
+      <Repos />
     </v-navigation-drawer>
 
     <v-toolbar>
@@ -19,7 +30,12 @@
 </template>
 
 <script>
+  import Repos from '../main/Repos.vue'
+
   export default {
+    components: {
+      Repos
+    },
     data () {
       return {
         drawer: false

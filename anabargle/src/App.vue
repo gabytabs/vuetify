@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <Toolbar />
-
+    <router-view></router-view>
   </v-app>
 </template>
 
