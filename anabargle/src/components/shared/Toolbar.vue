@@ -17,7 +17,7 @@
 
     <v-toolbar>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>GitItDone</v-toolbar-title>
+      <v-toolbar-title>Git Committed</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn flat>
