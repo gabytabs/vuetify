@@ -5,24 +5,47 @@ import { firebaseMutations, firebaseAction } from 'vuexfire'
 import { config } from './firebase_config'
 
 const db = firebase.initializeApp(config).database()
-export const todosRef = db.ref('todos')
+
+export const herTodosRef = db.ref('herTodos')
+export const hisTodosRef = db.ref('hisTodos')
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   strict: true,
   state: {
-    todos: []
+    herTodos: [],
+    hisTodos: [],
+    herCompletedTasks: [],
+    hisCompletedTasks: []
   },
   getters: {
-    todos: state => state.todos
+    herTodos: state => state.herTodos,
+    hisTodos: state => state.hisTodos,
+    herCompletedTask: state => state.herCompletedTasks,
+    hisCompletedTask: state => state.hisCompletedTasks
   },
   mutations: {
-    ...firebaseMutations
+    ...firebaseMutations,
+    addHerTaskToComplete: function (state, payload) {
+      state.herCompletedTasks = payload
+    },
+    addHisTaskToComplete: function (state, payload) {
+      state.hisCompletedTasks = payload
+    }
   },
   actions: {
-    setTodoRef: firebaseAction(({bindFirebaseRef}, ref) => {
-      bindFirebaseRef('todos', ref)
-    })
+    setHerTodoRef: firebaseAction(({bindFirebaseRef}, ref) => {
+      bindFirebaseRef('herTodos', ref)
+    }),
+    setHisTodoRef: firebaseAction(({bindFirebaseRef}, ref) => {
+      bindFirebaseRef('hisTodos', ref)
+    }),
+    pushToCompleteHerTasks: function (context, payload) {
+      context.commit('addHerTaskToComplete', payload)
+    },
+    pushToCompleteHisTasks: function (context, payload) {
+      context.commit('addHisTaskToComplete', payload)
+    }
   }
 })
